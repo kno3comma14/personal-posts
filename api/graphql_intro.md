@@ -5,7 +5,7 @@ such as SOAP, REST, WebSub, gRPC, etc. Today, I want to present you my favorite 
 including a little bit of history, the reasons to exist, basic concepts 
 and a practical demo about GraphQL(Part 2).
 
-### A little bit of GraphQL pre-history
+## A little bit of GraphQL pre-history
 
 In order to generate some context, I think I have to talk about the software development industry at 2011-2012 period.
 
@@ -18,7 +18,7 @@ really bad. The solution? Start with the development of a mobile application usi
 
 This solution proposed by facebook was a great idea at comercial level, but what about the technical sight?
 
-##### The chaos started!
+#### The chaos started!
 
 The api made by facebook was built thinking about the existent web technologies at 2011. These times, when we pressed a button
 in the web application the browser had to fetch one or two resources from the api, but when the native development started for
@@ -26,7 +26,7 @@ mobile application they figured that they needed more than one or two resources,
 the client layer to resolve connectivity and speed problems inherited from the connection quality of these years. For this reason,
 the traditional api exposed by facebook  wasn't supporting the new mobile application.
 
-##### SuperGraph to the rescue!
+#### SuperGraph to the rescue!
 
 In order to solve this problem, **Nick Schrock** started a prototype named *SuperGraph*.
 
@@ -34,15 +34,15 @@ In order to solve this problem, **Nick Schrock** started a prototype named *Supe
 could create queries and get the needed entities efficiently. To help with the development process of *SuperGraph*, Lee Byron, Dan Schafer and
 other started a team and finally renamed *SuperGraph* to **GraphQL**.
 
-### GraphQL - Concepts
+## GraphQL - Concepts
 
 At this point, I think we are clear about the beginings and the reason to exist to GraphQL, so let start with some important concepts.
 
-##### GraphQL
+#### GraphQL
 **GraphQL** is a query language with a type system to define our entities and it provides a server runtime for executing queries over these 
 entities. In this way, the entities are backed by the application needs and they are not tied with any source of data.
 
-##### How to create types in GraphQL?
+#### How to create types in GraphQL?
 In the hearth of GraphQL we can create types, these types represent objects that live inside your services and the description of their fields. 
 Let see something to be expressed as a type:
 
