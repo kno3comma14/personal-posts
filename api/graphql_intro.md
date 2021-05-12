@@ -3,7 +3,7 @@
 When we are designing or implementing APIs, we can encounter with many flavours
 such as SOAP, REST, WebSub, gRPC, etc. Today, I want to present you my favorite one
 including a little bit of history, the reasons to exist, basic concepts 
-and a practical demo about GraphQL.
+and a practical demo about GraphQL(Part 2).
 
 ### A little bit of GraphQL pre-history
 
@@ -34,12 +34,36 @@ In order to solve this problem, **Nick Schrock** started a prototype named *Supe
 could create queries and get the needed entities efficiently. To help with the development process of *SuperGraph*, Lee Byron, Dan Schafer and
 other started a team and finally renamed *SuperGraph* to **GraphQL**.
 
-### GraphQL - Format concepts
+### GraphQL - Concepts
 
 At this point, I think we are clear about the beginings and the reason to exist to GraphQL, so let start with some important concepts.
 
 ##### GraphQL
 **GraphQL** is a query language with a type system to define our entities and it provides a server runtime for executing queries over these 
 entities. In this way, the entities are backed by the application needs and they are not tied with any source of data.
+
+##### How to create types in GraphQL?
+In the hearth of GraphQL we can create types, these types represent objects that live inside your services and the description of their fields. 
+Let see something to be expressed as a type:
+
+```graphql
+type Car {
+  model: String!
+  manufacturer: String!
+  features: [Feature!]!
+}
+```
+
+Easy right? I know, it's pretty obvious to read and interpret but let's create a formal language to improve our communication:
+- ```Car```: a GraphQL Object Type, in simple language this is a name associated to a set of fields. 
+- ```model```, ```manufacturer``` and ```features```: these are fields that belongs to the Car Type.
+- ```String```: This is a built-in type or scalar types in GraphQL world.
+- ```String!``` or ```<general_type>!```: the exclamation mark here represent a non-nullable field.
+- ```[Feature!]!```: This one is a combination of all properties mentioned until now. The brackets represents an array of Feature
+ojects. This field is non-nullable as well and it will contains non-nullables feature objects.
+
+
+
+
 
 
