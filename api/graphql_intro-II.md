@@ -47,7 +47,8 @@ these concepts so we can improve the understanding of the project.
 
 #### Queries
 At GraphQL queries are the way that we use to collect data from our API. This is one of the most important feature of
-GraphQL so we really need to understand it. In this post, we will try to explain queries using the schema.graphql as support.
+GraphQL so we really need to understand it. In this post, we will try to explain queries using the 
+[schema.graphql](https://github.com/kno3comma14/graphql_tutorial/blob/master/schema.graphql) file as support.
 
 First, we need to define the queries using the type syntax we saw in the last post:
 
@@ -90,8 +91,10 @@ type Wallet {
 }
 ```
 
+For the Wallet type we have 3 fields: id, name, currency and coins. ```id``` is an ID type, ```name``` is a String type, ```currency``` is a String type with a CurrencyUnit parameter and ```coins``` is an array of Coin type. The Coin type is present in the [schema.graphql](https://github.com/kno3comma14/graphql_tutorial/blob/master/schema.graphql) file if you want to explore it.
+
 To wrap all this explanation, we have to see this like a design process defined as: 
-```create "domain" types``` => ```create "result" types``` => ```create "representation"types```
+*create ```domain``` types* => *create ```result``` types* => *create ```representation``` types*
 
 This process is pretty similar to the process used to develop our applications.
 
@@ -99,4 +102,39 @@ To end this section, please remember that query types are used to fetch some dat
 or destroy data we will use **Mutations**. 
 
 #### Mutations
-TODO
+If you have given a look to [schema.graphql](https://github.com/kno3comma14/graphql_tutorial/blob/master/schema.graphql) file, you probably noticed that
+there is a type named Mutation and guess what? It contains the definitions for our mutation operations.
+
+The mutations are related to create, update or delete specific API entities.
+
+In our case, the [schema.graphql](https://github.com/kno3comma14/graphql_tutorial/blob/master/schema.graphql) file contains the following
+definition:
+
+```graphql
+type Mutation {
+  createWallet(name: String!, currency: String!, coins: [Int]): WalletResult!
+  deleteWallet(walletId: ID!): DeleteWalletResult!
+  addNewCoinToWallet(walletId: ID!, coinId: ID!): WalletResult!
+}
+```
+
+In this definitiion we have 3 defined operations: ```createWallet```, ```deleteWallet``` and ```addNewCoinToWallet```. 
+
+Important to remember!!! Mutations are related to create, update or delete entities from our API. We can infer that ```createWallet``` is a CREATE
+operation, ```deleteWallet``` is a delete operation and ```addNewCoinToWallet``` is an UPDATE operation.
+
+Please feel free to explore these definitions by yourself because I think it's time to start linking all this information 
+with the source code.
+
+
+
+## To the project again!
+I think we have learned the basics of GraphQL type system, now it's time to put all this knowledge in the right place, our project!
+
+Our chosen library for the GraphQL part of this project is named Ariadne. The main reason of this choice is the *Schema First* feature, because
+we want to understand how to use the type system provided by GraphQL. After we have a well defined schema then we will have to create
+the relationsip between the types that we have created and the business logic. They way to accomplished this is using **resolvers**.
+
+#### Resolvers
+
+
