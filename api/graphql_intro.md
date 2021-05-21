@@ -1,4 +1,4 @@
-# Understanding GraphQL
+# Understanding GraphQL - Part I
 
 When we are designing or implementing APIs, we can encounter with many flavors
 such as SOAP, REST, WebSub, gRPC, etc. Today, I want to present you my favorite one
