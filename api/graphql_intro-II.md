@@ -9,9 +9,9 @@ and MySQL.
 
 ## The project
 The source code for this project can be found [here](https://github.com/kno3comma14/graphql_tutorial) 
-and you are free to clone, fork and share the project for any purpose. 
+and you are free to clone, fork, and share the project for any purpose. 
 
-This is a project thought as a guide to understand a little bit of GraphQL, so we will need
+This is a project thought as a guide to present a little bit of GraphQL, so we will need
 a few requisites listed below:
 - **Python 3.8.6** or superior: Our programming language.
 - **Pip**: We need this to install Pipenv.
@@ -20,8 +20,8 @@ a few requisites listed below:
 
 The dependencies required for this project include:
 - **Ariadne**: Library used to implement GraphQL APIs
-- **SQLAlchemy**: This is an easy to use but powerful ORM.
-- **Flask**: We are using it to deal with our request - response life-cycle.
+- **SQLAlchemy**: This is an easy-to-use but powerful ORM.
+- **Flask**: We are using it to deal with our request-response life-cycle.
 
 #### Structure
 Our [graphql_tutorial](https://github.com/kno3comma14/graphql_tutorial) project has the structure shown
@@ -31,22 +31,22 @@ in the image below:
 Let's talk about the most relevant components included in this structure:
 
 - Pipfile: This is used by Pipenv to manage the dependencies included in the project.
-- main.py: The entrypoint of the project
+- main.py: The entry point of the project
 - schema.graphql: This file contains the definitions of all the types used in our GraphQL API. We will
 learn more about the structure of this file in future sections of this post. 
-- api/models.py: In this module we have the classes that describe the data to be mapped between our code and 
+- api/models.py: In this module, we have the classes that describe the data to be mapped between our code and 
 our database.
 - api/queries.py: This module contains the query operations from our graphql api.
 - api/mutations.py: mutations module contains the query operations from our GraphQL API.
-- api/__init__.py: Contains the base configuration needed by out project.
+- api/__init__.py: Contains the base configuration needed by our project.
 
 
 ## Going back to the concepts
-In the last section of this posts, we read about two new concepts from GraphQL, queries and mutations. Let's define
+In the last section of this post, we will read about two new concepts from GraphQL, queries, and mutations. Let's define
 these concepts so we can improve the understanding of the project.
 
 #### Queries
-At GraphQL queries are the way that we use to collect data from our API. This is one of the most important feature of
+At GraphQL queries are the way that we use to collect data from our API. This is one of the most important features of
 GraphQL so we really need to understand it. In this post, we will try to explain queries using the 
 [schema.graphql](https://github.com/kno3comma14/graphql_tutorial/blob/master/schema.graphql) file as support.
 
@@ -80,7 +80,7 @@ type WalletsResult {
 ```
 
 These two types are similar but ```WalletResult``` will receive only one ```Wallet``` object and ```WalletsResult``` will receive an array of ```Wallet```
-as base type. Now, we are talking about the ```Wallet``` type, so let's take a look:
+as the base type. Now, we are talking about the ```Wallet``` type, so let's take a look:
 
 ```graphql
 type Wallet {
@@ -91,7 +91,7 @@ type Wallet {
 }
 ```
 
-For the Wallet type we have 3 fields: id, name, currency and coins. ```id``` is an ID type, ```name``` is a String type, ```currency``` is a String type with a CurrencyUnit parameter and ```coins``` is an array of Coin type. The Coin type is present in the [schema.graphql](https://github.com/kno3comma14/graphql_tutorial/blob/master/schema.graphql) file if you want to explore it.
+For the Wallet type, we have 3 fields: id, name, currency, and coins. ```id``` is an ID type, ```name``` is a String type, ```currency``` is a String type with a CurrencyUnit parameter, and ```coins``` is an array of Coin type. The Coin type is present in the [schema.graphql](https://github.com/kno3comma14/graphql_tutorial/blob/master/schema.graphql) file if you want to explore it.
 
 To wrap all this explanation, we have to see this like a design process defined as: 
 *create ```domain``` types* => *create ```result``` types* => *create ```representation``` types*
@@ -131,9 +131,9 @@ with the source code.
 ## To the project again!
 I think we have learned the basics of GraphQL type system, now it's time to put all this knowledge in the right place, our project!
 
-Our chosen library for the GraphQL part of this project is named Ariadne. The main reason of this choice is the *Schema First* feature, because
-we want to understand how to use the type system provided by GraphQL. After we have a well defined schema then we will have to create
-the relationsip between the types that we have created and the business logic. The way to accomplished this is using **resolvers**.
+Our chosen library for the GraphQL part of this project is named Ariadne. The main reason for this choice is the *Schema First* feature because
+we want to understand how to use the type system provided by GraphQL. After we have a well-defined schema then we will have to create
+the relationship between the types that we have created and the business logic. The way to accomplished this is using **resolvers**.
 
 #### Resolvers
 The two modules we have created as resolvers are ```queries.py``` and ```mutations.py```. In ```queries.py``` we have fetching operations, let's
@@ -177,8 +177,8 @@ def fetch_one_wallet(obj, info, wallet_id):
     return payload
 ```
 
-The first new thing here is the decorator ```convert_kwargs_to_snake_case```, that make the conversion from kwargs to snake case for a given function.
-This is important because ariadne compare these arguments with the arguments from the GraphQL schema.
+The first new thing here is the decorator ```convert_kwargs_to_snake_case```, which makes the conversion from kwargs to snake case for a given function.
+This is important because ariadne compares these arguments with the arguments from the GraphQL schema.
 
 In the source presented, we can see two different methods: ```fetch_wallets``` and ```fetch_one_wallet```. ```fetch_wallets``` returns all the wallets
 existent in the database and ```fetch_one_wallet``` returns one wallet given the wallet id. I hope you remember this code:
@@ -199,7 +199,7 @@ The rest of the code is almost the same sequence of steps:
 The analysis of the code from ```queries.py``` module is similar to the code exposed in ```mutations.py``` module, so we encourage you to study
 this code by yourself.
 
-Note: We recommend add a step here for input validation purposes. We didn't include this step for simplicity reasons. Remember the main focus here
+Note: We recommend adding a step here for input validation purposes. We didn't include this step for simplicity reasons. Remember the main focus here
 is the GraphQL topic.
 
 #### The development flow
@@ -208,13 +208,13 @@ When we were thinking about how to design this sample application, we decided to
 - Resolvers development(output: queries.py and mutations.py files).
 - Resolvers binding.
 
-The resolver binding phase of the flow is done in the ```main.py``` module but we recommend to separate it if your application is bigger that this one.
+The resolver binding phase of the flow is done in the ```main.py``` module but we recommend separating it if your application is bigger than this one.
 
 ## Summary
-In this section we tried to complete the basic theory need to understand a GraphQL API. We covered queries, mutations and resolvers. We explained 
+In this section, we tried to complete the basic theory need to understand a GraphQL API. We covered queries, mutations, and resolvers. We explained 
 the most important parts of our sample code so you will have a better understanding of the structure.
 
-You can get the sample code at this [link](https://github.com/kno3comma14/graphql_tutorial) and if you have any questions please don't hesiste in contact
+You can get the sample code at this [link](https://github.com/kno3comma14/graphql_tutorial) and if you have any questions please don't hesitate to contact
 me via [@enyert](https://twitter.com/enyert), leave a comment [here](https://github.com/kno3comma14/graphql_tutorial) or send me an email to 
 enyert.vinas@gmail.com.
 
