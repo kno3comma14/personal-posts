@@ -133,8 +133,91 @@ I think we have learned the basics of GraphQL type system, now it's time to put 
 
 Our chosen library for the GraphQL part of this project is named Ariadne. The main reason of this choice is the *Schema First* feature, because
 we want to understand how to use the type system provided by GraphQL. After we have a well defined schema then we will have to create
-the relationsip between the types that we have created and the business logic. They way to accomplished this is using **resolvers**.
+the relationsip between the types that we have created and the business logic. The way to accomplished this is using **resolvers**.
 
 #### Resolvers
+The two modules we have created as resolvers are ```queries.py``` and ```mutations.py```. In ```queries.py``` we have fetching operations, let's
+check the source code:
+
+```python
+from api.models import Wallet
+
+from ariadne import convert_kwargs_to_snake_case
 
 
+def fetch_wallets(obj, info):
+    try:
+        wallets = [wallet.to_dict() for wallet in Wallet.query.all()]
+        payload = {
+            "success": True,
+            "wallets": wallets
+        }
+    except Exception as error:
+        payload = {
+            "success": False,
+            "errors": [str(error)]
+        }
+    return payload
+
+
+@convert_kwargs_to_snake_case
+def fetch_one_wallet(obj, info, wallet_id):
+    try:
+        wallet = Wallet.query.get(wallet_id)
+        payload = {
+            "success": True,
+            "wallet": wallet.to_dict()
+        }
+    except AttributeError:
+        payload = {
+            "success": False,
+            "errors": [f"Wallet item matching id {wallet_id} not found"]
+        }
+
+    return payload
+```
+
+The first new thing here is the decorator ```convert_kwargs_to_snake_case```, that make the conversion from kwargs to snake case for a given function.
+This is important because ariadne compare these arguments with the arguments from the GraphQL schema.
+
+In the source presented, we can see two different methods: ```fetch_wallets``` and ```fetch_one_wallet```. ```fetch_wallets``` returns all the wallets
+existent in the database and ```fetch_one_wallet``` returns one wallet given the wallet id. I hope you remember this code:
+```graphql
+type Query {
+  wallets: WalletsResult!
+  wallet(walletId: ID!): WalletResult!
+}
+```
+It is from the ```schema.graphql``` file and I am taking it back because we have to notice that the argument of the field ```wallet``` is named
+walletId, so this is the snake case version of the wallet_id argument.
+
+The rest of the code is almost the same sequence of steps:
+- Interact with the database using the models.
+- Transform model objects into a dictionary named payload
+- Handle exceptions of the whole process.
+
+The analysis of the code from ```queries.py``` module is similar to the code exposed in ```mutations.py``` module, so we encourage you to study
+this code by yourself.
+
+Note: We recommend add a step here for input validation purposes. We didn't include this step for simplicity reasons. Remember the main focus here
+is the GraphQL topic.
+
+#### The development flow
+When we were thinking about how to design this sample application, we decided to create the following flow:
+- Schema design(output: schema.graphql file).
+- Resolvers development(output: queries.py and mutations.py files).
+- Resolvers binding.
+
+The resolver binding phase of the flow is done in the ```main.py``` module but we recommend to separate it if your application is bigger that this one.
+
+## Summary
+In this section we tried to complete the basic theory need to understand a GraphQL API. We covered queries, mutations and resolvers. We explained 
+the most important parts of our sample code so you will have a better understanding of the structure.
+
+You can get the sample code at this [link](https://github.com/kno3comma14/graphql_tutorial) and if you have any questions please don't hesiste in contact
+me via [@enyert](https://twitter.com/enyert), leave a comment [here](https://github.com/kno3comma14/graphql_tutorial) or send me an email to 
+enyert.vinas@gmail.com.
+
+I hope you enjoyed the reading.
+
+Happy hacking!
