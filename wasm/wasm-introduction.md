@@ -42,9 +42,13 @@ the general process describing any step of the development life cycle.
 After this explanation, we will show you all the development life cycle using two different practical examples:
 1) Using wat => WASM, we will write some code using a textual representation named **wat** and will compile to WASM.
 2) Using Rust => WASM, we will write some code using [Rust](https://www.rust-lang.org/) and will compile to WASM.
-### General process
-TODO: Explain the general process of the development life cycle.
-
+### General development life-cycle
+The development life-cycle for any WASM application follows a common set of steps. In the following lines we will mention
+and explain every step of this process.
+1) Source code implementation: For the implementation of the source code we can select any language that will be available
+to compile to WASM.
+2) Compilation phase: We will compile the source code to WASM using a compiler such as [Emscripten](https://emscripten.org/) or [Cheerp](https://leaningtech.com/cheerp/).
+3) Execution phase: The execution phase will run **wasm** extention files as binaries. TODO: Complete this process with the queue machine working example
 ### Time to practice!
 TODO: Expose two different approaches to develop a simple WASM application
 
