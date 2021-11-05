@@ -37,8 +37,17 @@ for this three different factors.
 A valuable note for the reader could be a list of different languages that compile to WebAssembly, if you want this resource please
 go to this [link](https://github.com/appcypher/awesome-wasm-langs)
 ## How WebAssembly works?
-We already gave you a brief description of multiple aspects around WebAssembly, now we will provide the it works. For this purpose
-we will be using two different approches
+We already gave you a brief description of multiple aspects around WebAssembly, now we will explain how it works. First, we will introduce
+the general process describing any step of the development life cycle.
+After this explanation, we will show you all the development life cycle using two different practical examples:
+1) Using wat => WASM, we will write some code using a textual representation named **wat** and will compile to WASM.
+2) Using Rust => WASM, we will write some code using [Rust](https://www.rust-lang.org/) and will compile to WASM.
+### General process
+TODO: Explain the general process of the development life cycle.
+
+### Time to practice!
+TODO: Expose two different approaches to develop a simple WASM application
+
 ## Conclusion
 In this article we talked about [WebAssembly](https://webassembly.org/) and explored the basic concepts and pilars
 of this amazing technology. In the next part of this series of articles we will take these concepts to the practice.
