@@ -1,5 +1,5 @@
 # WASM Part I: What is WebAssembly? Reasons to take it seriously
-This article is the beginning of a serie of two more posts that describes what is WebAssembly(WASM)
+This article is the beginning of a serie of two more posts that describes what is [WebAssembly(WASM)](https://webassembly.org/)
 and the importance of this technology. On completion, the reader should understand the basic
 concepts related to this topic.
 ## The traditional web
@@ -24,10 +24,21 @@ so let extend a little bit more this explanation. Let's start with **binary inst
 because it represents the way [WASM](https://webassembly.org/) expose instructions to the computer in order to be processed. On
 the other hand, we have a **stack-based virtual machine** which store the instructions from WASM files in memory
 using a stack as a main structure(We will talk more about this later).
-## Pillars of WebAssembly
-TODO: Talk about the pillars of WebAssembly
+## Main goals of WebAssembly
+Like any other technology in the web, WebAssembly has been created thinking about some specific goals in mind. We are
+presenting these goals in a different as follows:
+- Security: WebAssembly provides a secure sandboxed virtual machine. This means that we can WASM code from any web application
+without thinking about intrusions over our personal computers or servers. Proof of this point is any of the most used browsers
+in the web have its support enabled by default because they are confident about the security provided by WASM.
+- Fast execution: WASM is compiled into a binary format that will be executed at low level. In this way we will deliver
+near native performance execution times.
+- Portability: Three of the promises of WASM are Hardware/Language/Platform independency. This principle implies portability
+for this three different factors.
+A valuable note for the reader could be a list of different languages that compile to WebAssembly, if you want this resource please
+go to this [link](https://github.com/appcypher/awesome-wasm-langs)
 ## How WebAssembly works?
-TODO: TODO Talk about how WASM works
+We already gave you a brief description of multiple aspects around WebAssembly, now we will provide the it works. For this purpose
+we will be using two different approches
 ## Conclusion
 In this article we talked about [WebAssembly](https://webassembly.org/) and explored the basic concepts and pilars
 of this amazing technology. In the next part of this series of articles we will take these concepts to the practice.
