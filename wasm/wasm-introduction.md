@@ -18,7 +18,7 @@ One of the many solutions for this problem could be the inclusion of a new lower
 binary format to run alongside with JavaScript. In this way, we could use this language to develop near-native
 performance features.
 ## WebAssembly, time to raise!
-Having these ideas in consideration, WebAssembly(AKA WASM) was launched in 2017 as a [binary instruction format](https://webassembly.github.io/spec/core/binary/index.html)
+Having these ideas in consideration, [WebAssembly(AKA WASM)](https://webassembly.org/) was launched in 2017 as a [binary instruction format](https://webassembly.github.io/spec/core/binary/index.html)
 for a **stack-based virtual machine**. We know this definition is almost the same shown at [webassembly.org](https://webassembly.org/)
 so let extend a little bit more this explanation. Let's start with **binary instruction format**, this one is simple
 because it represents the way [WASM](https://webassembly.org/) expose instructions to the computer in order to be processed. On
@@ -50,8 +50,14 @@ to compile to WASM.
 2) Compilation phase: We will compile the source code to WASM using a compiler such as [Emscripten](https://emscripten.org/) or [Cheerp](https://leaningtech.com/cheerp/).TODO: Complete this process with the queue machine working example
 3) Execution phase: The execution phase will run **wasm** extention files as binaries. 
 ### Time to practice!
-TODO: Expose two different approaches to develop a simple WASM application
-
+We presented you a brief introduction to WebAssembly, how it works and the general development life cycle. Now it's time
+to all this stuff in practice. Let's start with our first example: **Wat to WASM!**
+#### Wat to WASM!
+In this example we will be using the WASM textual representation known as **Wat**. With this format, the code can be read
+by humans but it's not the best option for larger applications. With this example we want to show you that **WASM** applications
+could be made even without a sophisticated setup or any famous programming language existent our there.
+#### Rust to WASM!
+TODO: Expose example to be executed using Rust.
 ## Conclusion
 In this article we talked about [WebAssembly](https://webassembly.org/) and explored the basic concepts and pilars
 of this amazing technology. In the next part of this series of articles we will take these concepts to the practice.
