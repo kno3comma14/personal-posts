@@ -52,11 +52,28 @@ to compile to WASM.
 ### Time to practice!
 We presented you a brief introduction to WebAssembly, how it works and the general development life cycle. Now it's time
 to all this stuff in practice. Let's start with our first example: **Wat to WASM!**
-#### Wat to WASM!
+### Wat to WASM!
 In this example we will be using the WASM textual representation known as **Wat**. With this format, the code can be read
 by humans but it's not the best option for larger applications. With this example we want to show you that **WASM** applications
 could be made even without a sophisticated setup or any famous programming language existent our there.
-#### Rust to WASM!
+#### Setup
+First of all we will need [CMake](https://cmake.org/) because it is a pre-requisite to install [The WebAssembly Binary Toolkit or WABT](https://github.com/webassembly/wabt). In
+MacOS is easy to install, we just need to run ```brew install cmake``` and wait for the instalation to be completed. In linux [CMake](https://cmake.org/) probably
+will exists in many different package managers so it could be something like ```sudo apt-get install cmake``` for debian/ubuntu users or the substitution of ```apt-get```
+by any of your package managers. For windows users, please follow these [instructions](https://cmake.org/install/).
+After the instalation of CMake we will need to install [The WebAssembly Binary Toolkit or WABT](https://github.com/webassembly/wabt). In order to do this,
+we need to clone the git repository using the following commands:
+1) ```git clone --recursive https://github.com/WebAssembly/wabt```
+2) ```cd wabt```
+3) ```git submodule update --init```
+[WABT](https://github.com/webassembly/wabt) needs to use several submodules for some tests, that's the reason we are initializing and updating the submodules.
+
+Now, we need to run the following instructions in order to build [WABT](https://github.com/webassembly/wabt):
+1) ```mkdir build```
+2) ```cd build```
+3) ```cmake ..```
+4) ```cmake .```
+### Rust to WASM!
 TODO: Expose example to be executed using Rust.
 ## Conclusion
 In this article we talked about [WebAssembly](https://webassembly.org/) and explored the basic concepts and pilars
