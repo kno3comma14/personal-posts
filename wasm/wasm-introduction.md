@@ -73,6 +73,15 @@ Now, we need to run the following instructions in order to build [WABT](https://
 2) ```cd build```
 3) ```cmake ..```
 4) ```cmake .```
+
+After this step we recommend you to add the route for the ```bin``` folder to the ```$PATH```, in this way you don't have to put
+the complete path to ```bin``` everytime you want to execute every [WABT](https://github.com/webassembly/wabt) command.
+#### Time to code
+Perfect, we have completed the setup, so now it's time to create our first *.wat file, compile it to a *.wasm file and call it from Javascript.
+First of all, create a project folder using the following command:
+```mkdir my_first_project```
+or you can use your favorite editor for this purpose as well. Inside this folder we need to create a wat file using our editor or this command:
+```touch add.wat```
 ### Rust to WASM!
 TODO: Expose example to be executed using Rust.
 ## Conclusion
