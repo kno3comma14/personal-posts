@@ -81,7 +81,20 @@ Perfect, we have completed the setup, so now it's time to create our first *.wat
 First of all, create a project folder using the following command:
 ```mkdir my_first_project```
 or you can use your favorite editor for this purpose as well. Inside this folder we need to create a wat file using our editor or this command:
-```touch add.wat```
+```touch calc.wat```
+In this file, we will create a simple calculator with only one operation, addition.
+Open the ```calc.wat``` file in your favorite editor and paste or write the following code:
+```lisp
+(module
+  (func (export "sum") 
+        (param $a i32)
+        (param $b i32)
+        (result i32)
+    local.get $a
+    local.get $b
+    i32.add
+    return))
+```
 ### Rust to WASM!
 TODO: Expose example to be executed using Rust.
 ## Conclusion
