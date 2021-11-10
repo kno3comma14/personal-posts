@@ -140,7 +140,7 @@ inside a folder named **super-wasm-tutorial**.
        (fn [obj] (js/console.log (obj/instance.exports.add 1 2))))
 ```
 4) Use the command ```scripts/build``` to build the project.
-5) Run a webserver in the ```super-wasm-tutorial``` folder to serve to a port. For this tutorial, I used ```python3 -m http.server``` that will serve for requests
+5) Run a webserver in the ```super-wasm-tutorial``` folder to serve to a port. For this tutorial, we used ```python3 -m http.server``` that will serve for requests
 at http://localhost:8000.
 6) Open a browser and go to http://localhost:<your_port> and use the console to see the console. If everything is ok, you will a number 3 printed in the console.
 
