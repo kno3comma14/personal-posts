@@ -18,16 +18,16 @@ One of the many solutions for this problem could be the inclusion of a new lower
 binary format to run alongside JavaScript. In this way, we could use this language to develop near-native
 performance features.
 ## WebAssembly, time to raise!
-Having these ideas in consideration, [WebAssembly(AKA WASM)](https://webassembly.org/) was launched in 2017 as a [binary instruction format](https://webassembly.github.io/spec/core/binary/index.html)
+Having these ideas in consideration, [WebAssembly(a.k.a WASM)](https://webassembly.org/) was launched in 2017 as a [binary instruction format](https://webassembly.github.io/spec/core/binary/index.html)
 for a **stack-based virtual machine**. We know this definition is almost the same shown at [webassembly.org](https://webassembly.org/)
 so let extend a little bit more this explanation. Let's start with **binary instruction format**, this one is simple
 because it represents the way [WASM](https://webassembly.org/) exposes instructions to the computer to be processed. On
 the other hand, we have a **stack-based virtual machine** which stores the instructions from WASM files in memory
 using a stack as the main structure(We will talk more about this later in this post).
-We are understanding a little bit more the concept of WebAssembly, so let's continue with the benefits this technology brings to us.
+Now that we are understanding a little bit more the concept of WebAssembly, so let's continue with the benefits this technology brings to us.
 ### Main goals of WebAssembly
 Like any other technology on the web, WebAssembly has been created thinking about some specific goals in mind. We are
-presenting these goals in a different as follows:
+presenting these goals in a different way as follows:
 - Security: WebAssembly provides a secure sandboxed virtual machine. This means that we can WASM code from any web application
 without thinking about intrusions over our personal computers or servers. Proof of this point is any of the most used browsers
 on the web have its support enabled by default because they are confident about the security provided by WASM.
@@ -38,8 +38,7 @@ next time we load a page that contains a module, there will be virtually no load
 - Portability: Three of the promises of WASM are Hardware/Language/Platform independence. This principle implies portability
 for these three different factors. In the example presented in this post, we are generating a module made with ```wat2wasm``` tool in one
 folder of our system. Then we can use the same *.wasm file in our ClojureScript project without any problem at all.
-A valuable note for the reader could be a list of different languages that compile to WebAssembly, if you want this resource, please
-go to this [link](https://github.com/appcypher/awesome-wasm-langs)
+A valuable note for the reader could be a list of different languages that compile to WebAssembly, if you want this resource, please go to this [link](https://github.com/appcypher/awesome-wasm-langs).
 ### How WebAssembly works?
 We have already given you a brief description of multiple aspects around WebAssembly, now we will explain how it works. First, we will introduce
 the general process describing any step of the development life cycle.
@@ -48,7 +47,13 @@ After this explanation, we will show you all the development life cycle using tw
 2) Using Rust => WASM, we will write some code using [Rust](https://www.rust-lang.org/) and will compile to WASM as well. This part will be covered in the [next post]()
 because we will solve a more difficult problem.
 ### The future!
-
+[WebAssembly](https://webassembly.org/) is one of the most exciting technologies to learn in the web at the moment, and the main
+reason for this is the bigger ambition around being an alternative output format for any compiler that targets native code. 
+Another aspect to take in consideration is that [WASM](https://webassembly.org/) is already integrated in great part of the web 
+platform. So, it is a natural chain reaction to use JavaScript and WebAssembly modules in conjunction. In this way, we can empower JavaScript with cross-compiled features from native code and get results as if it were part of the browser itself.
+Big projects such as [Figma](https://www.figma.com/), [Lichess](https://lichess.org/), [Jitsi](https://jitsi.org), and a other
+ones are using [WASM](https://webassembly.org/) for interesting use cases. So it's  a great opportunity to learn about this
+technology and adopt it if we have any use case to be solved with it.
 ### General development life-cycle
 The development life-cycle for any WASM application follows a common set of steps. In the following lines, we will mention
 and explain every step of this process.
