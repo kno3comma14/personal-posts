@@ -18,7 +18,12 @@ One of the many solutions for this problem could be the inclusion of a new lower
 binary format to run alongside with JavaScript. In this way, we could use this language to develop near-native
 performance features.
 ## WebAssembly, time to raise!
-Having these ideas in consideration, [WebAssembly(AKA WASM)](https://webassembly.org/) was launched in 2017 as a [binary instruction format](https://webassembly.github.io/spec/core/binary/index.html)
+(module
+  (func $add (param $a i32) (param $b i32) (result i32)
+    local.get $a
+    local.get $b
+    i32.add)
+  (export "add" (func $add)))Having these ideas in consideration, [WebAssembly(AKA WASM)](https://webassembly.org/) was launched in 2017 as a [binary instruction format](https://webassembly.github.io/spec/core/binary/index.html)
 for a **stack-based virtual machine**. We know this definition is almost the same shown at [webassembly.org](https://webassembly.org/)
 so let extend a little bit more this explanation. Let's start with **binary instruction format**, this one is simple
 because it represents the way [WASM](https://webassembly.org/) expose instructions to the computer in order to be processed. On
@@ -41,7 +46,8 @@ We already gave you a brief description of multiple aspects around WebAssembly, 
 the general process describing any step of the development life cycle.
 After this explanation, we will show you all the development life cycle using two different practical examples:
 1) Using wat => WASM, we will write some code using a textual representation named **wat** and will compile to WASM.
-2) Using Rust => WASM, we will write some code using [Rust](https://www.rust-lang.org/) and will compile to WASM.
+2) Using Rust => WASM, we will write some code using [Rust](https://www.rust-lang.org/) and will compile to WASM as well. This part we be covered in the [next post]()
+because we will solve a more difficult problem.
 ### General development life-cycle
 The development life-cycle for any WASM application follows a common set of steps. In the following lines we will mention
 and explain every step of this process.
@@ -86,20 +92,62 @@ In this file, we will create a simple calculator with only one operation, additi
 Open the ```calc.wat``` file in your favorite editor and paste or write the following code:
 ```lisp
 (module
-  (func (export "sum") 
-        (param $a i32)
-        (param $b i32)
-        (result i32)
+  (func $add (param $a i32) (param $b i32) (result i32)
     local.get $a
     local.get $b
-    i32.add
-    return))
+    i32.add)
+  (export "add" (func $add)))
 ```
-### Rust to WASM!
-TODO: Expose example to be executed using Rust.
+This code is pretty simple, it takes two parameters ```a``` and ```b``` and calculate the sum of these values. But don't drink too much Koolaid, we have
+to remember WASM as a **stack-based virtual machine**. With this idea in mind, we can describe the behaviour of this operation with more details:
+1) We have the ```module`` expression that contains the definition of the elements that belongs to a specific module.
+2) We are defining a function with the expression ```func```. In this case is a function named add(The $add symbol is more complex but keep this simple at the moment).
+3) We are defining some parameters with this function using ```param``` expression and we are defining types, ```i32``` for this particular case.
+4) We are using the ```result``` expresion to define the return value of the function.
+5) ```local.get x``` takes a value and push it to the our stack.
+6) We use ```i32.add``` to calculate the addition of the two elements from the top of the stack and put the result in the top of the stack. 
+7) We are exporting our function(Make it callable from external sources) using ```export``` expression)
+
+In the following animation we can see how the add operation is working in WASM:
+TODO: put animation
+
+After completing this phase, the next one will be compiling to wasm. For this purpose we use the following command:
+```wat2wasm calc.wat -o calc.wasm```
+```wat2wasm``` takes the *.wat file to compile and use the ```-o``` parameter to specify what is the **o**utput of the compilation for the *.wasm file. In our case
+we are using ```calc.wat``` as a source and the command will produce a compiled file named ```calc.wasm```.
+### ClojureScript Glue
+Most of the online tutorials focus the usage of WASM for JavaScript. But we are from the Clojure/Script world, so we will use our compiled wasm code
+in a simple ClojureScript project. For the next steps we will need to use [Leiningen](https://leiningen.org/), we will recommend you to install this tool
+and follow the following instructions:
+1) Create a simple ClojureScript project: Use this command ```lein new mies super-wasm-tutorial```. This will create a skeleton project using the template **mies**
+inside a folder named **super-wasm-tutorial**.
+2) Copy or move the wasm file to super-wasm-turorial folder.
+3) Add the following code to the ```super-wasm-tutorial.core``` namespace:
+```clojurescript
+(ns cljs-test.core
+  (:require [clojure.browser.repl :as repl]))
+
+;(defonce conn
+;  (repl/connect "http://localhost:9000/repl"))
+
+(enable-console-print!)
+
+(.then (. js/WebAssembly instantiateStreaming (js/fetch "calc.wasm"))
+       (fn [obj] (js/console.log (obj/instance.exports.add 1 2))))
+```
+4) Use the command ```scripts/build``` to build the project.
+5) Run a webserver in the ```super-wasm-tutorial``` folder to serve to a port. For this tutorial, I used ```python3 -m http.server``` that will serve for requests
+at http://localhost:8000.
+6) Open a browser and go to http://localhost:<your_port> and use the console to see the console. If everything is ok, you will a number 3 printed in the console.
+
+
 ## Conclusion
 In this article we talked about [WebAssembly](https://webassembly.org/) and explored the basic concepts and pilars
-of this amazing technology. In the next part of this series of articles we will take these concepts to the practice.
+of this amazing technology. We also created a simple function to add two integers using WAT and we used the wasm file
+with a ClojureScript project. In the next part of this series of articles we will create a more complex application
+using Rust and compiling the program to WASM. 
+
+Happy Hacking!
 
 Enyert Vinas is a software engineer at Flexiana(Using Clojure, Python and other languages as his toolchain), game developer and
 musician. He is living in Medellin, Colombia.
