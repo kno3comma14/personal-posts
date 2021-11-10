@@ -15,7 +15,7 @@ on the technology impemented by the browser) and renderer at the same time. In g
 JavaScript running resource-intensive applications like video editors, 3D games, and son on, is far away to
 compete with the native performance. 
 Remember JavaScript was designed for humans and contains rules and redundancy that must be checked by the 
-browser in order to run. 
+browser in order to run the source code. 
 ## How to solve this problem? 
 One of the many solutions for this problem could be the inclusion of a new lower level language with a compact
 binary format to run alongside with JavaScript. In this way, we could use this language to develop near-native
