@@ -1,7 +1,8 @@
 # WASM Part I: What is WebAssembly? Reasons to take it seriously
-This article is the beginning of a serie of two more posts that describes what is [WebAssembly(WASM)](https://webassembly.org/)
-and the importance of this technology. On completion, the reader should understand the basic
-concepts related to this topic.
+This article is the beginning of a serie of two more posts that describes what is [WebAssembly(WASM)](https://webassembly.org/), the importance of this technology
+and a simple [ClojureScript](https://clojurescript.org/) example running [WASM](https://webassembly.org/). On completion, the reader should understand the basic
+concepts related to this topic, will know the importance of [WASM](https://webassembly.org/) in the actual web and will be capable of running
+a simple application using ClojureScript|WAT|WASM.
 ## The traditional web
 The majority of the web is running using the traditional architecture, by traditional we mean
 a web browser sending requests to a server via http/s. This web browser uses HTML and CSS to render 
@@ -12,7 +13,9 @@ and simple.
 The problems with the traditional web are the limitations of the browser as interpreter/compiler(Depending
 on the technology impemented by the browser) and renderer at the same time. In general, the performance of
 JavaScript running resource-intensive applications like video editors, 3D games, and son on, is far away to
-compete with the native performance.
+compete with the native performance. 
+Remember JavaScript was designed for humans and contains rules and redundancy that must be checked by the 
+browser in order to run. 
 ## How to solve this problem? 
 One of the many solutions for this problem could be the inclusion of a new lower level language with a compact
 binary format to run alongside with JavaScript. In this way, we could use this language to develop near-native
@@ -23,36 +26,42 @@ for a **stack-based virtual machine**. We know this definition is almost the sam
 so let extend a little bit more this explanation. Let's start with **binary instruction format**, this one is simple
 because it represents the way [WASM](https://webassembly.org/) expose instructions to the computer in order to be processed. On
 the other hand, we have a **stack-based virtual machine** which store the instructions from WASM files in memory
-using a stack as a main structure(We will talk more about this later).
-## Main goals of WebAssembly
+using a stack as a main structure(We will talk more about this later in this post).
+We are understanding a little bit more the concept of WebAssembly, so let's continue with the benefits this technology brings to us.
+### Main goals of WebAssembly
 Like any other technology in the web, WebAssembly has been created thinking about some specific goals in mind. We are
 presenting these goals in a different as follows:
 - Security: WebAssembly provides a secure sandboxed virtual machine. This means that we can WASM code from any web application
 without thinking about intrusions over our personal computers or servers. Proof of this point is any of the most used browsers
 in the web have its support enabled by default because they are confident about the security provided by WASM.
 - Fast execution: WASM is compiled into a binary format that will be executed at low level. In this way we will deliver
-near native performance execution times.
+near native performance execution times. The format used by WASM is very compact so the browser can parse it as fast as possible.
+The translation of a [WebAsembly](https://webassembly.org/) module to a native code can be cached by the browser. In this way, the
+next time we load a page that contains a module, there will virtually no load time.
 - Portability: Three of the promises of WASM are Hardware/Language/Platform independency. This principle implies portability
-for this three different factors.
+for this three different factors. In the example presentend in this post, we are generating a module made with ```wat2wasm``` tool in one
+folder of our system. Then we can use the same *.wasm file in our ClojureScript project without any problem at all.
 A valuable note for the reader could be a list of different languages that compile to WebAssembly, if you want this resource please
 go to this [link](https://github.com/appcypher/awesome-wasm-langs)
-## How WebAssembly works?
+### How WebAssembly works?
 We already gave you a brief description of multiple aspects around WebAssembly, now we will explain how it works. First, we will introduce
 the general process describing any step of the development life cycle.
 After this explanation, we will show you all the development life cycle using two different practical examples:
 1) Using wat => WASM, we will write some code using a textual representation named **wat** and will compile to WASM.
 2) Using Rust => WASM, we will write some code using [Rust](https://www.rust-lang.org/) and will compile to WASM as well. This part we be covered in the [next post]()
 because we will solve a more difficult problem.
+### The future!
+
 ### General development life-cycle
 The development life-cycle for any WASM application follows a common set of steps. In the following lines we will mention
 and explain every step of this process.
 1) Source code implementation: For the implementation of the source code we can select any language that will be available
 to compile to WASM.
-2) Compilation phase: We will compile the source code to WASM using a compiler such as [Emscripten](https://emscripten.org/) or [Cheerp](https://leaningtech.com/cheerp/).TODO: Complete this process with the queue machine working example
+2) Compilation phase: We will compile the source code to WASM using a compiler such as [Emscripten](https://emscripten.org/) or [Cheerp](https://leaningtech.com/cheerp/).
 3) Execution phase: The execution phase will run **wasm** extention files as binaries. 
-### Time to practice!
+## Time to practice!
 We presented you a brief introduction to WebAssembly, how it works and the general development life cycle. Now it's time
-to all this stuff in practice. Let's start with our first example: **Wat to WASM!**
+to apply all this stuff in practice. Let's start with our first example: **Wat to WASM!**
 ### Wat to WASM!
 In this example we will be using the WASM textual representation known as **Wat**. With this format, the code can be read
 by humans but it's not the best option for larger applications. With this example we want to show you that **WASM** applications
@@ -85,7 +94,7 @@ or you can use your favorite editor for this purpose as well. Inside this folder
 ```touch calc.wat```
 In this file, we will create a simple calculator with only one operation, addition.
 Open the ```calc.wat``` file in your favorite editor and paste or write the following code:
-```lisp
+```clojure
 (module
   (func $add (param $a i32) (param $b i32) (result i32)
     local.get $a
