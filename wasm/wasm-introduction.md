@@ -113,7 +113,7 @@ to remember WASM as a **stack-based virtual machine**. With this idea in mind, w
 7) We are exporting our function(Make it callable from external sources) using ```export``` expression)
 
 In the following animation we can see how the add operation is working in WASM:
-TODO: put animation
+![wasm flow](../resources/wasm.gif)
 
 After completing this phase, the next one will be compiling to wasm. For this purpose we use the following command:
 ```wat2wasm calc.wat -o calc.wasm```
@@ -149,8 +149,7 @@ at http://localhost:8000.
 In this article we talked about [WebAssembly](https://webassembly.org/) and explored the basic concepts and pilars
 of this amazing technology. We also created a simple function to add two integers using WAT and we used the wasm file
 with a ClojureScript project. In the next part of this series of articles we will create a more complex application
-using Rust and compiling the program to WASM. 
-https://github.com/kno3comma14/personal-posts/blob/post/wasm-initial/wasm/wasm-introduction.md
+using Rust and will compile the program to WASM. 
 Happy Hacking!
 
 Enyert Vinas is a software engineer at Flexiana(Using Clojure, Python and other languages as his toolchain), game developer and
