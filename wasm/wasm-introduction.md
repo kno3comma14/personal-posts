@@ -10,7 +10,7 @@ interaction between the browser and the server via request - response life cycle
 and simple. 
 ## So, this scenario is working at the moment. What is the problem?
 The problems with the traditional web are the limitations of the browser as interpreter/compiler(Depending
-on the technology impemented by the browser) and rendered at the same time. In general, the performance of
+on the technology impemented by the browser) and renderer at the same time. In general, the performance of
 JavaScript running resource-intensive applications like video editors, 3D games, and son on, is far away to
 compete with the native performance.
 ## How to solve this problem? 
@@ -18,12 +18,7 @@ One of the many solutions for this problem could be the inclusion of a new lower
 binary format to run alongside with JavaScript. In this way, we could use this language to develop near-native
 performance features.
 ## WebAssembly, time to raise!
-(module
-  (func $add (param $a i32) (param $b i32) (result i32)
-    local.get $a
-    local.get $b
-    i32.add)
-  (export "add" (func $add)))Having these ideas in consideration, [WebAssembly(AKA WASM)](https://webassembly.org/) was launched in 2017 as a [binary instruction format](https://webassembly.github.io/spec/core/binary/index.html)
+Having these ideas in consideration, [WebAssembly(AKA WASM)](https://webassembly.org/) was launched in 2017 as a [binary instruction format](https://webassembly.github.io/spec/core/binary/index.html)
 for a **stack-based virtual machine**. We know this definition is almost the same shown at [webassembly.org](https://webassembly.org/)
 so let extend a little bit more this explanation. Let's start with **binary instruction format**, this one is simple
 because it represents the way [WASM](https://webassembly.org/) expose instructions to the computer in order to be processed. On
@@ -123,7 +118,7 @@ and follow the following instructions:
 inside a folder named **super-wasm-tutorial**.
 2) Copy or move the wasm file to super-wasm-turorial folder.
 3) Add the following code to the ```super-wasm-tutorial.core``` namespace:
-```clojurescript
+```clojure
 (ns cljs-test.core
   (:require [clojure.browser.repl :as repl]))
 
@@ -146,7 +141,7 @@ In this article we talked about [WebAssembly](https://webassembly.org/) and expl
 of this amazing technology. We also created a simple function to add two integers using WAT and we used the wasm file
 with a ClojureScript project. In the next part of this series of articles we will create a more complex application
 using Rust and compiling the program to WASM. 
-
+https://github.com/kno3comma14/personal-posts/blob/post/wasm-initial/wasm/wasm-introduction.md
 Happy Hacking!
 
 Enyert Vinas is a software engineer at Flexiana(Using Clojure, Python and other languages as his toolchain), game developer and
