@@ -4,8 +4,8 @@ concepts related to this topic, will know the importance of [WASM](https://webas
 a simple application using ClojureScript|WAT|WASM.
 ## The traditional web
 The majority of the web is running using the traditional architecture, by traditional we mean
-a web browser sending requests to a server via http/s. This web browser uses HTML and CSS to render content and delegate to JavaScript the responsibility to manage the behavior of these components and the
-interaction between the browser and the server via request-response life cycle. That's it, plain
+a web browser sending requests to a server via http/s. This web browser uses HTML and CSS to render content and *delegate to JavaScript* the responsibility to manage the behavior of these components and the
+interaction between the browser and the internet via request-response life cycle. That's it, plain
 and simple. 
 ## So, this scenario is working at the moment. What is the problem?
 The problems with the traditional web are the limitations of the browser as interpreter/compiler(Depending
