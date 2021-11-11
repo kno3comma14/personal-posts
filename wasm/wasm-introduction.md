@@ -5,7 +5,7 @@ a simple application using ClojureScript|WAT|WASM.
 ## The traditional web
 The majority of the web is running using the traditional architecture, by traditional we mean
 a web browser sending requests to a server via http/s. This web browser uses HTML and CSS to render content and *delegate to JavaScript* the responsibility to manage the behavior of these components and the
-interaction between the browser and the internet via request-response life cycle. That's it, plain
+interaction between the browser and the internet via the request-response life cycle. That's it, plain
 and simple. 
 ## So, this scenario is working at the moment. What is the problem?
 The problems with the traditional web are the limitations of the browser as interpreter/compiler(Depending
@@ -27,7 +27,7 @@ using a stack as the main structure(We will talk more about this later in this p
 Now that we are understanding a little bit more the concept of WebAssembly, so let's continue with the benefits this technology brings to us.
 ### Main goals of WebAssembly
 Like any other technology on the web, WebAssembly has been created thinking about some specific goals in mind. We are
-presenting these goals in a different way as follows:
+presenting these goals differently as follows:
 - Security: WebAssembly provides a secure sandboxed virtual machine. This means that we can WASM code from any web application
 without thinking about intrusions over our personal computers or servers. Proof of this point is any of the most used browsers
 on the web have its support enabled by default because they are confident about the security provided by WASM.
@@ -47,12 +47,12 @@ After this explanation, we will show you all the development life cycle using tw
 2) Using Rust => WASM, we will write some code using [Rust](https://www.rust-lang.org/) and will compile to WASM as well. This part will be covered in the [next post]()
 because we will solve a more difficult problem.
 ### The future!
-[WebAssembly](https://webassembly.org/) is one of the most exciting technologies to learn in the web at the moment, and the main
+[WebAssembly](https://webassembly.org/) is one of the most exciting technologies to learn on the web at the moment and the main
 reason for this is the bigger ambition around being an alternative output format for any compiler that targets native code. 
-Another aspect to take in consideration is that [WASM](https://webassembly.org/) is already integrated in great part of the web 
+Another aspect to take into consideration is that [WASM](https://webassembly.org/) is already integrated with a great part of the web 
 platform. So, it is a natural chain reaction to use JavaScript and WebAssembly modules in conjunction. In this way, we can empower JavaScript with cross-compiled features from native code and get results as if it were part of the browser itself.
 Big projects such as [Figma](https://www.figma.com/), [Lichess](https://lichess.org/), [Jitsi](https://jitsi.org), and a other
-ones are using [WASM](https://webassembly.org/) for interesting use cases. So it's  a great opportunity to learn about this
+ones are using [WASM](https://webassembly.org/) for interesting use cases. So it's a great opportunity to learn about this
 technology and adopt it if we have any use case to be solved with it.
 ### General development life-cycle
 The development life-cycle for any WASM application follows a common set of steps. In the following lines, we will mention
@@ -87,7 +87,7 @@ Now, we need to run the following instructions to build [WABT](https://github.co
 4) ```cmake .```
 
 After this step we recommend you to add the route for the ```bin``` folder to the ```$PATH```, in this way you don't have to put
-the complete path to ```bin```every time you want to execute every [WABT](https://github.com/webassembly/wabt) command.
+the complete path to ```bin``` folder every time you want to execute any of the [WABT](https://github.com/webassembly/wabt) commands.
 #### Time to code
 Perfect, we have completed the setup, so now it's time to create our first *.wat file, compile it to a *.wasm file, and call it from Javascript.
 First of all, create a project folder using the following command:
@@ -105,7 +105,7 @@ Open the ```calc.wat``` file in your favorite editor and paste or write the foll
   (export "add" (func $add)))
 ```
 This code is pretty simple, it takes two parameters ```a``` and ```b```, and calculates the sum of these values. But don't drink too much Koolaid, we have
-to remember WASM as a **stack-based virtual machine**. With this idea in mind, we can describe the behavior of this operation with more details:
+to remember WASM as a **stack-based virtual machine**. With this idea in mind, we can describe the behavior of this operation in more details:
 1) We have the ```module`` expression that contains the definition of the elements that belong to a specific module.
 2) We are defining a function with the expression ```func```. In this case, is a function named add(The $add expression is more complex but keeps this simple at the moment).
 3) We are defining some parameters with this function using ```param``` expression and we are defining types, ```i32``` for this particular case.
@@ -152,6 +152,7 @@ In this article, we talked about [WebAssembly](https://webassembly.org/) and exp
 of this amazing technology. We also created a simple function to add two integers using WAT and we used the wasm file
 with a ClojureScript project. In the next part of this series of articles, we will create a more complex application
 using Rust and will compile the program to WASM. 
+
 Happy Hacking!
 
 Enyert Vinas is a software engineer at Flexiana(Using Clojure, Python, and other languages as his toolchain), game developer, and
