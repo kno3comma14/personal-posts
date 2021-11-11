@@ -103,7 +103,7 @@ Open the ```calc.wat``` file in your favorite editor and paste or write the foll
     i32.add)
   (export "add" (func $add)))
 ```
-This code is pretty simple, it takes two parameters ```a``` and ```b```, and calculates the sum of these values. But don't drink too much Koolaid, we have
+This code is pretty simple, it takes two parameters ```a``` and ```b```, and calculates the sum of these values. But don't drink too much Kool-Aid, we have
 to remember WASM as a **stack-based virtual machine**. With this idea in mind, we can describe the behavior of this operation in more details:
 1) We have the ```module`` expression that contains the definition of the elements that belong to a specific module.
 2) We are defining a function with the expression ```func```. In this case, is a function named add(The $add expression is more complex but keeps this simple at the moment).
@@ -111,7 +111,7 @@ to remember WASM as a **stack-based virtual machine**. With this idea in mind, w
 4) We are using the ```result``` expression to define the return value of the function.
 5) ```local.get x``` takes a value and pushes it to our stack.
 6) We use ```i32.add``` to calculate the addition of the two elements from the top of the stack and put the result at the top of the stack. 
-7) We are exporting our function(Make it callable from external sources) using ```export``` expression)
+7) We are exporting our function(Make it callable from external sources) using ```export``` expression.
 
 In the following animation we can see how the add operation is working in WASM:
 ![wasm flow](../resources/wasm.gif)
@@ -126,7 +126,7 @@ in a simple ClojureScript project. For the next steps we will need to use [Leini
 and follow the following instructions:
 1) Create a simple ClojureScript project: Use this command ```lein new mies super-wasm-tutorial```. This will create a skeleton project using the template **mies**
 inside a folder named **super-wasm-tutorial**.
-2) Copy or move the wasm file to super-wasm-turorial folder.
+2) Copy or move the wasm file to **super-wasm-turorial** folder.
 3) Add the following code to the ```super-wasm-tutorial.core``` namespace:
 ```clojure
 (ns cljs-test.core
@@ -144,7 +144,7 @@ inside a folder named **super-wasm-tutorial**.
 5) Run a web server in the ```super-wasm-tutorial``` folder to serve to a port. For this tutorial, we used ```python3 -m http.server``` that will serve for requests
 at http://localhost:8000.
 6) Open a browser and go to http://localhost:<your_port> and use the console to see the console. If everything is ok, you will see a number 3 printed on the console.
-Congratulations, your ClojureScript application is using a compiled *.wasm file to run [WASM](https://webassembly.org/). 
+Congratulations! Your ClojureScript application is using a compiled *.wasm file to run [WASM](https://webassembly.org/). 
 ## Conclusion
 In this article, we talked about [WebAssembly](https://webassembly.org/) and explored the basic concepts and pillars
 of this amazing technology. We also created a simple function to add two integers using WAT and we used the wasm file
