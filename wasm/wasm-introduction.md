@@ -1,5 +1,5 @@
 # WASM Part I: What is WebAssembly? Reasons to take it seriously
-This article is the beginning of a series of two more posts that describes what is [WebAssembly(WASM)](https://webassembly.org/), the importance of this technology, and a simple [ClojureScript](https://clojurescript.org/) example running [WASM](https://webassembly.org/). On completion, the reader should understand the basic
+This article is the beginning of a series of posts that describes [WebAssembly(WASM)](https://webassembly.org/), the importance of this technology, and a simple [ClojureScript](https://clojurescript.org/) example running [WASM](https://webassembly.org/). On completion, the reader should understand the basic
 concepts related to this topic, will know the importance of [WASM](https://webassembly.org/) in the actual web, and will be capable of running
 a simple application using ClojureScript|WAT|WASM.
 ## The traditional web
@@ -10,30 +10,30 @@ and simple.
 ## So, this scenario is working at the moment. What is the problem?
 The problems with the traditional web are the limitations of the browser as interpreter/compiler(Depending
 on the technology implemented by the browser) and renderer at the same time. In general, the performance of
-JavaScript running resource-intensive applications like video editors, 3D games, and so on, is far away to
+JavaScript running resource-intensive applications like video editors, 3D games, and so on, can't
 compete with the native performance. 
 Remember JavaScript was designed for humans and contains rules and redundancy that must be checked by the browser to run the source code. 
 ## How to solve this problem? 
 One of the many solutions for this problem could be the inclusion of a new lower-level format with a compact
 binary format to run alongside JavaScript. In this way, we could use this language to develop near-native
 performance features.
-## WebAssembly, time to raise!
+## WebAssembly, time to rise!
 Having these ideas in mind, [WebAssembly(a.k.a WASM)](https://webassembly.org/) was launched in 2017 as a [binary instruction format](https://webassembly.github.io/spec/core/binary/index.html)
 for a **stack-based virtual machine**. We know this definition is almost the same shown at [webassembly.org](https://webassembly.org/)
 so let extend a little bit more this explanation. Let's start with **binary instruction format**, this one is simple
 because it represents the way [WASM](https://webassembly.org/) exposes instructions to the computer to be processed. On
 the other hand, we have a **stack-based virtual machine** which stores the instructions from WASM files in memory
 using a stack as the main structure(We will talk more about this later in this post).
-Now that we are understanding a little bit more the concept of WebAssembly, so let's continue with the goals and benefits this technology brings to us.
+Now that we are understanding a little bit more about the concept of WebAssembly, so let's continue with the goals and benefits this technology brings to us.
 ### Main goals of WebAssembly
-Like any other technology on the web, WebAssembly has been created thinking about some specific goals in mind. We are
-presenting these goals differently as follows:
-- Security: WebAssembly provides a secure sandboxed virtual machine. This means that we can WASM code from any web application
-without thinking about intrusions over our personal computers or servers. Proof of this point is that some of the most used browsers
+Like any other technology on the web, WebAssembly has been created with some specific goals in mind. We are
+presenting these goals as follows:
+- Security: WebAssembly provides a secure sandboxed virtual machine. This means that we can use WASM code from any web application
+without thinking about intrusions into our personal computers or servers. Proof of this point is that some of the most used browsers
 on the web have its support enabled by default because they are confident about the security provided by [WASM](https://webassembly.org/).
 - Fast execution: [WASM](https://webassembly.org/) is compiled into a binary format that will be executed at a low level. In this way, we will deliver
 near-native performance execution times. The format used by WASM is very compact so the browser can parse it as fast as possible.
-The translation of a [WebAsembly](https://webassembly.org/) module to a native code can be cached by the browser. In this way, the
+The translation of a [WebAsembly](https://webassembly.org/) module to native code can be cached by the browser. In this way, the
 next time we load a page that contains a module, there will be virtually no load time.
 - Portability: Three of the promises of WASM are Hardware/Language/Platform independence. This principle implies portability
 for these three different factors. In the example presented in this post, we are generating a module made with ```wat2wasm``` tool in one
@@ -42,8 +42,7 @@ A valuable note for the reader could be a list of different languages that compi
 ### The future!
 [WebAssembly](https://webassembly.org/) is one of the most exciting technologies to learn on the web at the moment and the main
 reason for this is the bigger ambition around being an alternative output format for any compiler that targets native code. 
-Another aspect to take into consideration is that [WASM](https://webassembly.org/) is already integrated with a great part of the web 
-platform. So, it is a natural chain reaction to use JavaScript and WebAssembly modules in conjunction. In this way, we can empower JavaScript with cross-compiled features from native code and get results as if it were part of the browser itself.
+Another aspect to take into consideration is that [WASM](https://webassembly.org/) is already integrated with a greater part of the web. So, it is a natural chain reaction to use JavaScript and WebAssembly modules in conjunction. In this way, we can empower JavaScript with cross-compiled features from native code and get results as if it were part of the browser itself.
 Big projects such as [Figma](https://www.figma.com/), [Lichess](https://lichess.org/), [Jitsi](https://jitsi.org), and a other
 ones are using [WASM](https://webassembly.org/) for interesting use cases. So it's a great opportunity to learn about this
 technology and adopt it if we have any use case to be solved with it.
@@ -61,7 +60,7 @@ to compile to WASM.
 2) Compilation phase: We will compile the source code to WASM using a compiler such as [Emscripten](https://emscripten.org/) or [Cheerp](https://leaningtech.com/cheerp/).
 3) Execution phase: The execution phase will run **wasm** extension files as binaries. 
 ## Time to practice!
-We presented you a brief introduction to WebAssembly, how it works, and the general development life cycle. Now it's time
+We presented you with a brief introduction to WebAssembly, how it works, and the general development life cycle. Now it's time
 to apply all this stuff in practice. Let's start with our first example: **Wat to WASM!**
 ### Wat to WASM!
 In this example, we will be using the WASM textual representation known as **Wat**. With this format, the code can be read
